@@ -1,0 +1,89 @@
+<button type="button" class="btn btn-primary" (click)="abrirModal()">
+  <i class="bi bi-receipt me-2"></i>Registrar cliente
+</button>
+@if (modalAbierto) {
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="modalClienteLabel">Registro de cliente y mascota</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="fw-bold text-primary mb-3">
+              <i class="bi bi-card-list me-2"></i>Datos del Cliente
+            </h6>
+            <div class="mb-3">
+              <label for="nombres" class="form-label fw-semibold">Nombres</label>
+              <input type="text" class="form-control" id="nombres" placeholder="Ej: María" [(ngModel)]="cliente.nombres"
+                name="nombres" />
+            </div>
+            <div class="mb-3">
+              <label for="apellidos" class="form-label fw-semibold">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" placeholder="Ej: González López"
+                [(ngModel)]="cliente.apellidos" name="apellidos" />
+            </div>
+            <div class="mb-3">
+              <label for="dni" class="form-label fw-semibold">DNI</label>
+              <input type="text" class="form-control" id="dni" placeholder="Ej: 12345678" [(ngModel)]="cliente.dni"
+                name="dni" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Ej: maria@email.com"
+                [(ngModel)]="cliente.email" name="email" />
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+              <input type="text" class="form-control" id="telefono" placeholder="Ej: 987654321"
+                [(ngModel)]="cliente.telefono" name="telefono" />
+            </div>
+          </div>
+
+          <div class="col-md-6 border-end">
+            <h6 class="fw-bold text-primary mb-3">
+              <i class="bi bi-card-list me-2"></i> Datos de la Mascota
+            </h6>
+            <div class="mb-3">
+              <label for="nombreMascota" class="form-label fw-semibold">Nombre de la Mascota</label>
+              <input type="text" class="form-control" id="nombreMascota" placeholder="Ej: Firulais"
+                [(ngModel)]="mascota.nombre" name="nombreMascota" />
+            </div>
+            <div class="mb-3">
+              <label for="especieMascota" class="form-label fw-semibold">Especie</label>
+              <select class="form-select" id="especieMascota" [(ngModel)]="mascota.especie" name="especieMascota">
+                <option value="" disabled selected>Selecciona una especie</option>
+                @for (especie of especies; track especie) {
+                <option [value]="especie">{{ especie }}</option>
+                }
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="razaMascota" class="form-label fw-semibold">Raza</label>
+              <input type="text" class="form-control" id="razaMascota" placeholder="Ej: Labrador"
+                [(ngModel)]="mascota.raza" name="razaMascota" />
+            </div>
+            <div class="mb-3">
+              <label for="edadMascota" class="form-label fw-semibold">Edad</label>
+              <div class="input-group">
+                <input type="number" class="form-control" id="edadMascota" placeholder="0" [(ngModel)]="mascota.edad"
+                  name="edadMascota" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" (click)="cerrarModal()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="registrar()">
+          Registrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+}

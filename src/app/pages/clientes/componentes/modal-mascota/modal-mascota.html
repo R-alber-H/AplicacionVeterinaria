@@ -1,0 +1,41 @@
+
+ @if (modalAbierto) {
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5">Registrar Nueva Mascota</h2>
+        <button type="button" class="btn-close" (click)="cerrarModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 text-start">
+          <label class="form-label fw-semibold">Nombre de la mascota</label>
+          <input type="text" class="form-control" placeholder="Nombre de la mascota" [(ngModel)]="mascota.nombre"
+            name="nombreMascota">
+        </div>
+        <div class="mb-3 text-start">
+          <label class="form-label fw-semibold">Seleccione especie</label>
+          <select class="form-select" id="especieMascota" [(ngModel)]="mascota.especie" name="especieMascota">
+            <option value="" disabled selected>Selecciona una especie</option>
+            @for (especie of especies; track especie) {
+            <option [value]="especie">{{ especie }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-3 text-start">
+          <label class="form-label fw-semibold">Raza de la mascota</label>
+          <input type="text" class="form-control" placeholder="Raza" [(ngModel)]="mascota.raza" name="razaMascota">
+        </div>
+        <div class="mb-3 text-start">
+          <label class="form-label fw-semibold">Edad de la mascota</label>
+          <input type="number" class="form-control" placeholder="Edad" [(ngModel)]="mascota.edad" name="edadMascota">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" (click)="cerrarModal()">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="registrar()">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
