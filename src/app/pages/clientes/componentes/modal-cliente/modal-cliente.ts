@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { clientes } from '../../../../datos/clientes';
 import { cliente, mascota, especies } from '../../../../datos/clientes';
+import { validarCliente } from '../../../../validaciones/validacion-cliente';
+import { SweetAlertService } from '../../../../sweetalert/sweetalert-servicio';
 
 @Component({
   selector: 'app-modal-cliente',
@@ -37,6 +39,13 @@ export class ModalCliente {
 
   registrar() {
 
+    const error = validarCliente(this.cliente, this.mascota);
+
+    if (error) {
+      SweetAlertService.error(error);
+      return;
+    }
+
     this.cliente.id = this.clientesActuales.length + 1;
     this.mascota.id = this.cliente.mascotas.length + 1;
 
@@ -44,7 +53,7 @@ export class ModalCliente {
 
     this.clientesActuales.push(this.cliente);
 
-    console.log('Cliente registrado:', this.cliente);
+    SweetAlertService.exito('Cliente registrado correctamente');
 
     this.limpiarFormulario();
     
