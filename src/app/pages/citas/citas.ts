@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { Calendario } from '../../components/calendario/calendario';
 
 @Component({
   selector: 'app-citas',
-  imports: [],
+  imports: [Calendario],
   templateUrl: './citas.html',
   styleUrl: './citas.css',
 })
-export class Citas {
-
-}
+export class Citas {}

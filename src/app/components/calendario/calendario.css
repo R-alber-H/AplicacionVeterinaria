@@ -1,0 +1,44 @@
+/* Permite modificar los estilos internos del angular-calendar */
+:host ::ng-deep .cal-week-view .cal-hour-segment {
+  border-bottom: 1px solid #ddd !important; /* línea inferior */
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  background: transparent !important;
+}
+
+/* Elimina los bordes verticales de los días */
+:host ::ng-deep .cal-week-view .cal-day-columns {
+  border: none !important;
+}
+
+/* Quita la cuadrícula de los segmentos pequeños (por si tienes hourSegments > 1) */
+:host ::ng-deep .cal-week-view .cal-hour-segment:nth-child(odd) {
+  background: transparent !important;
+}
+
+/* Ajusta el texto de las horas (lado izquierdo) */
+:host ::ng-deep .cal-week-view .cal-time {
+  background: transparent !important;
+  border: none !important;
+  text-align: right;
+  padding-right: 10px;
+  color: #444;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* Asegura fondo blanco limpio */
+:host ::ng-deep .cal-week-view .cal-hour-rows {
+  background-color: #fff !important;
+}
+
+/* Opcional: líneas más sutiles */
+:host ::ng-deep .cal-week-view .cal-hour-segment:not(:last-child) {
+  border-bottom: 1px dashed #ccc !important;
+}
+
+/* Opcional: línea que marca la hora actual */
+:host ::ng-deep .cal-week-view .cal-current-time-marker {
+  border-top: 2px solid #007bff !important;
+}

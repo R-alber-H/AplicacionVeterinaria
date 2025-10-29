@@ -1,0 +1,46 @@
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 10px !important;
+  padding: 24px !important;
+  background-color: white;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* espacio entre label e input */
+  margin-bottom: 20px; /* espacio entre los grupos */
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151; /* gris suave */
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: #1f2937;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: none; /* para mantener tamaño consistente */
+  min-height: 100px;
+}
