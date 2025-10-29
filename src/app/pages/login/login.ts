@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuarios } from '../../datos/usuarios';
+import { validarLogin } from '../../validaciones/validacion-login';
+import { SweetAlertService } from '../../sweetalert/sweetalert-servicio';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,14 @@ export class Login {
   constructor(private router: Router) {}
 
   login() {
+
+    const error = validarLogin(this.email, this.password);
+
+    if (error) {
+      SweetAlertService.error(error);
+      return;
+    }
+
   const usuario = Usuarios.find(u => u.email === this.email && u.password === this.password);
   
   if (usuario) {
@@ -22,7 +32,7 @@ export class Login {
     localStorage.setItem('sesionActiva', 'true'); 
     this.router.navigate(['/clientes']);
   } else {
-    alert('Credenciales incorrectas');
+    SweetAlertService.error('Credenciales incorrectas.');
   }
 }
 

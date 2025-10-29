@@ -2,6 +2,8 @@
 import { Component, Input } from '@angular/core';
 import { mascota, cliente, especies } from '../../../../datos/clientes';
 import { FormsModule } from '@angular/forms';
+import { SweetAlertService } from '../../../../sweetalert/sweetalert-servicio';
+import { validarMascota } from '../../../../validaciones/validacion-mascota';
 
 @Component({
   selector: 'app-modal-mascota',
@@ -32,7 +34,13 @@ export class ModalMascota {
 
   registrar() {
     if (!this.cliente) {
-      console.log('No se ha seleccionado un cliente.');
+      SweetAlertService.error('No se ha seleccionado un cliente.');
+      return;
+    }
+
+    const error = validarMascota(this.mascota);
+    if (error) {
+      SweetAlertService.error(error);
       return;
     }
 
@@ -41,14 +49,17 @@ export class ModalMascota {
     this.mascota.id = id;
     this.cliente.mascotas.push({ ...this.mascota });
 
-    console.log('Mascota registrada:', this.mascota);
-    console.log('Cliente actualizado:', this.cliente);
+    SweetAlertService.exito('Mascota registrada correctamente');
 
-    this.mascota = { id: 0, nombre: '', especie: '', raza: '', edad: 0, foto: 'perro2.jpg' };
+    this.limpiarModal();
     this.cerrarModal();
   }
 
   cerrarModal() {
     this.modalAbierto = false;
+  }
+
+  limpiarModal(){
+     this.mascota = { id: 0, nombre: '', especie: '', raza: '', edad: 0, foto: 'perro2.jpg' };
   }
 }
