@@ -1,0 +1,35 @@
+<div class="p-4 border rounded shadow bg-white">
+  <h2 class="text-xl font-bold mb-4">Historial de Citas</h2>
+
+  <!-- Filtro por nombre -->
+  <input
+    type="text"
+    placeholder="Filtrar por nombre de cliente"
+    [(ngModel)]="filtroNombre"
+    class="border p-2 mb-4 w-full rounded"
+  />
+
+  <!-- Tabla -->
+  <table class="min-w-full border border-gray-300">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="border px-4 py-2">Fecha</th>
+        <th class="border px-4 py-2">Hora</th>
+        <th class="border px-4 py-2">Cliente</th>
+        <th class="border px-4 py-2">Mascota</th>
+        <th class="border px-4 py-2">Tipo de Cita</th>
+        <th class="border px-4 py-2">Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ev of eventosFiltrados">
+        <td class="border px-4 py-2">{{ ev.fecha }}</td>
+        <td class="border px-4 py-2">{{ ev.hora }}</td>
+        <td class="border px-4 py-2">{{ ev.cliente }}</td>
+        <td class="border px-4 py-2">{{ ev.mascota }}</td>
+        <td class="border px-4 py-2">{{ ev.tipo }}</td>
+        <td class="border px-4 py-2">{{ ev.descripcion }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

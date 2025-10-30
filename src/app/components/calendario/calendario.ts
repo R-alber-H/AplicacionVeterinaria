@@ -100,7 +100,11 @@ export class Calendario {
         title: result.titulo,
         start: result.fecha,
         end: new Date(result.fecha.getTime() + 60 * 60 * 1000),
-        meta: { description: result.descripcion },
+        meta: {
+          description: result.descripcion,
+          clienteId: result.clienteId,
+          mascotaId: result.mascotaId,
+        },
       };
 
       this.events = [...this.events, nuevaCita];

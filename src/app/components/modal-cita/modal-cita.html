@@ -12,33 +12,55 @@
   </div>
 
   <form (ngSubmit)="guardar()" class="space-y-6">
-    <!-- Campo: Título -->
+    <!-- Select cliente -->
     <div class="form-group">
-      <label class=""> Título de la cita: </label>
-      <input
-        [(ngModel)]="titulo"
-        name="titulo"
-        class=""
-        placeholder="Ej. Consulta veterinaria"
+      <label>Cliente:</label>
+      <select
+        [(ngModel)]="clienteSeleccionadoId"
+        name="cliente"
+        (change)="cambiarCliente()"
         required
-        autofocus
-      />
+      >
+        <option [ngValue]="null" disabled selected>Selecciona un cliente</option>
+        <option *ngFor="let c of clientes" [ngValue]="c.id">
+          {{ c.nombres }} {{ c.apellidos }}
+        </option>
+      </select>
     </div>
 
-    <!-- Campo: Descripción -->
+    <!-- Select mascota -->
+    <div class="form-group" *ngIf="mascotasCliente.length > 0">
+      <label>Mascota:</label>
+      <select [(ngModel)]="mascotaSeleccionadaId" name="mascota" required>
+        <option [ngValue]="null" disabled selected>Selecciona una mascota</option>
+        <option *ngFor="let m of mascotasCliente" [ngValue]="m.id">
+          {{ m.nombre }} ({{ m.especie }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Título -->
     <div class="form-group">
-      <label class=""> Descripción: </label>
-      <textarea [(ngModel)]="descripcion" name="descripcion" rows="5" class=""></textarea>
+      <label>Título de la cita:</label>
+      <input [(ngModel)]="titulo" name="titulo" placeholder="Ej. Consulta veterinaria" required />
     </div>
 
+    <!-- Descripción -->
+    <div class="form-group">
+      <label>Descripción:</label>
+      <textarea [(ngModel)]="descripcion" name="descripcion" rows="5"></textarea>
+    </div>
+
+    <!-- Hora -->
     <div class="form-group">
       <label>Hora:</label>
-      <input type="time" [(ngModel)]="hora" name="hora" />
+      <input type="time" [(ngModel)]="hora" name="hora" min="08:00" max="17:00" />
     </div>
+
     <!-- Botones -->
     <div class="flex justify-end gap-4 pt-4">
-      <button type="button" (click)="cerrar()" class="">Cancelar</button>
-      <button type="submit" class="">Guardar</button>
+      <button type="button" (click)="cerrar()">Cancelar</button>
+      <button type="submit">Guardar</button>
     </div>
   </form>
 </div>
