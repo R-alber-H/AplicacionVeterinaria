@@ -14,9 +14,9 @@
 }
 .sidebar-link.active {
   background: #CD3301;
-      color: #eeeef3;
+  color: #eeeef3;
   transform: translateX(5px);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .sidebar-link {

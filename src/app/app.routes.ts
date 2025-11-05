@@ -5,11 +5,12 @@ import { Citas } from './pages/citas/citas';
 import { Historial } from './pages/historial/historial';
 import { Layout } from './layout/layout/layout';
 import { DetalleMascotas } from './pages/detalle-mascotas/detalle-mascotas';
+import { Home } from './pages/home/home';
 
 export const routes: Routes = [
 
-  { path: '', component: Login, pathMatch: 'full' },
-
+  { path: 'login', component: Login, pathMatch: 'full' },
+  {path:'', component:Home},
   {
     path: '',
     component: Layout,

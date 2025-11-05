@@ -1,0 +1,12 @@
+.fondo {
+    background-color: #fbc300;
+}
+a {
+    color: white ;
+    font-size: 1rem;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+.logo{
+    font-size: 1.8rem;
+}
