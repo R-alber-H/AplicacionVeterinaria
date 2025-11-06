@@ -1,8 +1,8 @@
 <div class="p-8 bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-auto">
-  <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Registrar nueva cita</h2>
+  <h4 class="text-2xl text-primary text-center">Registrar nueva cita</h4>
 
   <!-- Fecha seleccionada -->
-  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-center">
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-7 text-center">
     <p class="text-gray-700 text-lg">
       <strong>Fecha seleccionada:</strong>
       <span class="text-blue-600 font-semibold">
@@ -14,8 +14,8 @@
   <form (ngSubmit)="guardar()" class="space-y-6">
     <!-- Select cliente -->
     <div class="form-group">
-      <label>Cliente:</label>
-      <select
+      <label class="mt-2">Cliente:</label>
+      <select class="form-select"
         [(ngModel)]="clienteSeleccionadoId"
         name="cliente"
         (change)="cambiarCliente()"
@@ -31,7 +31,7 @@
     <!-- Select mascota -->
     <div class="form-group" *ngIf="mascotasCliente.length > 0">
       <label>Mascota:</label>
-      <select [(ngModel)]="mascotaSeleccionadaId" name="mascota" required>
+      <select class="form-select" [(ngModel)]="mascotaSeleccionadaId" name="mascota" required>
         <option [ngValue]="null" disabled selected>Selecciona una mascota</option>
         <option *ngFor="let m of mascotasCliente" [ngValue]="m.id">
           {{ m.nombre }} ({{ m.especie }})
@@ -48,7 +48,7 @@
     <!-- Descripción -->
     <div class="form-group">
       <label>Descripción:</label>
-      <textarea [(ngModel)]="descripcion" name="descripcion" rows="5"></textarea>
+      <textarea [(ngModel)]="descripcion" name="descripcion" rows="2"></textarea>
     </div>
 
     <!-- Hora -->

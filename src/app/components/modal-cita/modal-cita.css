@@ -4,22 +4,16 @@
   background-color: white;
 }
 
-/* button {
-  background-color: transparent;
-  border: 1px solid black;
-  margin: 5px;
-} */
-
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px; /* espacio entre label e input */
-  margin-bottom: 20px; /* espacio entre los grupos */
+  gap: 6px; 
+  margin-bottom: 10px; 
 }
 
 .form-group label {
   font-weight: 600;
-  color: #374151; /* gris suave */
+  color: #374151; 
   font-size: 1rem;
 }
 
@@ -41,6 +35,6 @@
 }
 
 .form-group textarea {
-  resize: none; /* para mantener tamaño consistente */
+  resize: none; 
   min-height: 100px;
 }

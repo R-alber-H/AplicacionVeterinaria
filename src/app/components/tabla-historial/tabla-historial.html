@@ -4,14 +4,14 @@
   <!-- Filtro por nombre -->
   <input
     type="text"
-    placeholder="Filtrar por nombre de cliente"
+    placeholder="Buscar cliente"
     [(ngModel)]="filtroNombre"
     class="border p-2 mb-4 w-full rounded"
   />
 
   <!-- Tabla -->
-  <table class="min-w-full border border-gray-300">
-    <thead>
+  <table class="min-w-full border border-gray-300 table table-striped">
+    <thead class="text-center">
       <tr class="bg-gray-100">
         <th class="border px-4 py-2">Fecha</th>
         <th class="border px-4 py-2">Hora</th>
@@ -21,7 +21,7 @@
         <th class="border px-4 py-2">Descripción</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
       <tr *ngFor="let ev of eventosFiltrados">
         <td class="border px-4 py-2">{{ ev.fecha }}</td>
         <td class="border px-4 py-2">{{ ev.hora }}</td>
