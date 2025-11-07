@@ -1,7 +1,6 @@
 <div class="p-8 bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-auto">
   <h4 class="text-2xl text-primary text-center">Registrar nueva cita</h4>
 
-  <!-- Fecha seleccionada -->
   <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-7 text-center">
     <p class="text-gray-700 text-lg">
       <strong>Fecha seleccionada:</strong>
@@ -12,7 +11,7 @@
   </div>
 
   <form (ngSubmit)="guardar()" class="space-y-6">
-    <!-- Select cliente -->
+    
     <div class="form-group">
       <label class="mt-2">Cliente:</label>
       <select class="form-select"
@@ -28,7 +27,6 @@
       </select>
     </div>
 
-    <!-- Select mascota -->
     <div class="form-group" *ngIf="mascotasCliente.length > 0">
       <label>Mascota:</label>
       <select class="form-select" [(ngModel)]="mascotaSeleccionadaId" name="mascota" required>
@@ -39,28 +37,24 @@
       </select>
     </div>
 
-    <!-- Título -->
     <div class="form-group">
       <label>Título de la cita:</label>
       <input [(ngModel)]="titulo" name="titulo" placeholder="Ej. Consulta veterinaria" required />
     </div>
 
-    <!-- Descripción -->
     <div class="form-group">
       <label>Descripción:</label>
       <textarea [(ngModel)]="descripcion" name="descripcion" rows="2"></textarea>
     </div>
 
-    <!-- Hora -->
     <div class="form-group">
       <label>Hora:</label>
       <input type="time" [(ngModel)]="hora" name="hora" min="08:00" max="17:00" />
     </div>
 
-    <!-- Botones -->
     <div class="flex justify-end gap-4 pt-4">
       <button class="btn btn-danger btn-sm me-2" type="button" (click)="cerrar()">Cancelar</button>
-      <button class="btn btn-primary btn-sm"  type="submit">Guardar</button>
+      <button class="btn btn-primary btn-sm"  type="button" (click)="guardar()">Guardar</button>
     </div>
   </form>
 </div>

@@ -12,8 +12,4 @@ export const Usuarios: Usuario[] = [
     email: 'usuario2@veterinaria.com',
     password: '123456',
   },
-  {
-    email: 'usuario3@veterinaria.com',
-    password: 'password123',
-  }
 ];

@@ -1,6 +1,12 @@
 import { CalendarEvent } from 'angular-calendar';
 
-export const Eventos: CalendarEvent[] = [
+export interface EventoMeta {
+  description: string;
+  clienteId: number;
+  mascotaId: number;
+}
+
+export const Eventos: CalendarEvent<EventoMeta>[] = [
   {
     start: new Date(2025, 9, 25, 10, 0, 0),
     end: new Date(2025, 9, 25, 11, 0, 0),

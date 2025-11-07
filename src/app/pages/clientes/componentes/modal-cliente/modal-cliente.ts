@@ -56,7 +56,7 @@ export class ModalCliente {
     SweetAlertService.exito('Cliente registrado correctamente');
 
     this.limpiarFormulario();
-    
+
     this.cerrarModal();
   }
 

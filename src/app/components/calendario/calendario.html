@@ -1,76 +1,41 @@
 <div class="p-4 border rounded shadow bg-white">
-  <!-- 🔹 Controles de navegación -->
   <div class="gap-2 mb-4 text-center">
-    <button
-      mat-icon-button
-      mwlCalendarPreviousView
-      [view]="view"
-      [(viewDate)]="viewDate"
-      class="btn"
-    >
+
+    <button mat-icon-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" class="btn">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <button mwlCalendarToday [(viewDate)]="viewDate" class="btn">Hoy</button>
     <button mat-icon-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" class="btn">
       <mat-icon>chevron_right</mat-icon>
     </button>
+
     <h3 class="text-lg font-semibold ml-4">
       {{ viewDate | calendarDate : view + 'ViewTitle' : 'es' }}
     </h3>
   </div>
 
-  <!-- 🔹 Botones de vista -->
   <div class="flex gap-2 mb-4">
-    <button
-      (click)="setView(CalendarView.Month)"
-      [class.active]="view === CalendarView.Month"
-      class="btn"
-    >
+    <button (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month" class="btn btn-primary me-2">
       Mes
     </button>
-    <button
-      (click)="setView(CalendarView.Week)"
-      [class.active]="view === CalendarView.Week"
-      class="btn"
-    >
+    <button (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week" class="btn btn-primary me-2">
       Semana
     </button>
-    <button
-      (click)="setView(CalendarView.Day)"
-      [class.active]="view === CalendarView.Day"
-      class="btn"
-    >
+    <button (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day" class="btn btn-primary">
       Día
     </button>
   </div>
 
-  <!-- 🔹 Calendario -->
   @switch (view) { @case (CalendarView.Month) {
-  <mwl-calendar-month-view
-    [viewDate]="viewDate"
-    [events]="events"
-    (dayClicked)="onDayClick($event)"
-  >
+  <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" (dayClicked)="onDayClick($event)">
   </mwl-calendar-month-view>
   } @case (CalendarView.Week) {
-  <mwl-calendar-week-view
-    [viewDate]="viewDate"
-    [events]="events"
-    [dayStartHour]="dayStartHour"
-    [dayEndHour]="dayEndHour"
-    [hourSegments]="hourSegments"
-    (hourSegmentClicked)="onDayClick($event)"
-  >
+  <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [dayStartHour]="dayStartHour"
+    [dayEndHour]="dayEndHour" [hourSegments]="hourSegments" (hourSegmentClicked)="onDayClick($event)">
   </mwl-calendar-week-view>
   } @case (CalendarView.Day) {
-  <mwl-calendar-day-view
-    [viewDate]="viewDate"
-    [events]="events"
-    [dayStartHour]="dayStartHour"
-    [dayEndHour]="dayEndHour"
-    [hourSegments]="hourSegments"
-    (hourSegmentClicked)="onDayClick($event)"
-  >
+  <mwl-calendar-day-view [viewDate]="viewDate" [events]="events" [dayStartHour]="dayStartHour" [dayEndHour]="dayEndHour"
+    [hourSegments]="hourSegments" (hourSegmentClicked)="onDayClick($event)">
   </mwl-calendar-day-view>
   } }
 </div>

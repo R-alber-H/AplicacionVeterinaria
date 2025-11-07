@@ -3,7 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { mascota, clientes, cliente } from '../../datos/clientes';
-import { Eventos } from '../../datos/eventos';
+import { Eventos,EventoMeta } from '../../datos/eventos';
+import { SweetAlertService } from '../../sweetalert/sweetalert-servicio';
+import { CalendarEvent } from 'angular-calendar';
 
 @Component({
   selector: 'app-modal-cita',
@@ -13,6 +15,8 @@ import { Eventos } from '../../datos/eventos';
 })
 export class ModalCita {
   clientes: cliente[] = clientes;
+  eventos: CalendarEvent<EventoMeta>[] = Eventos;
+  
 
   clienteSeleccionadoId: number | null = null;
   mascotasCliente: mascota[] = [];
@@ -23,7 +27,7 @@ export class ModalCita {
   hora = '';
 
   private horaDisponible(nuevaCita: Date): boolean {
-    const duracionMs = 60 * 60 * 1000; // 1 hora
+    const duracionMs = 60 * 60 * 1000; 
     const inicioNueva = nuevaCita.getTime();
     const finNueva = inicioNueva + duracionMs;
 
@@ -31,22 +35,20 @@ export class ModalCita {
       if (!ev.start) continue;
 
       const inicioExistente = new Date(ev.start).getTime();
-      // si ev.end no existe, asumimos duración de 1 hora
       const finExistente = ev.end ? new Date(ev.end).getTime() : inicioExistente + duracionMs;
 
       if (inicioNueva < finExistente && finNueva > inicioExistente) {
-        return false; // hay solapamiento
+        return false; 
       }
     }
 
-    return true; // disponible
+    return true; 
   }
 
-  // Cuando cambia el cliente
   cambiarCliente() {
     const clienteData = this.clientes.find((c) => c.id === this.clienteSeleccionadoId);
     this.mascotasCliente = clienteData ? clienteData.mascotas : [];
-    this.mascotaSeleccionadaId = null; // resetear mascota
+    this.mascotaSeleccionadaId = null; 
   }
 
   constructor(
@@ -60,12 +62,12 @@ export class ModalCita {
 
   guardar() {
     if (!this.titulo || !this.descripcion || !this.hora) {
-      alert('Debe rellenar todos los campos');
+      SweetAlertService.error('Debe rellenar todos los campos');
       return;
     }
 
     if (!this.clienteSeleccionadoId || !this.mascotaSeleccionadaId) {
-      alert('Debe seleccionar cliente y mascota');
+      SweetAlertService.error('Debe seleccionar cliente y mascota');
       return;
     }
 
@@ -74,22 +76,28 @@ export class ModalCita {
     fechaCompleta.setHours(horas, minutos, 0, 0);
 
     if (!this.horaDisponible(fechaCompleta)) {
-      alert('Ya existe otra cita programada en ese horario.');
+      SweetAlertService.error('Ya existe otra cita programada en ese horario.');
       return;
     }
 
-    // Validación de hora mínima/máxima
+
     if (horas < 8 || horas > 17) {
-      alert('La hora debe estar entre 08:00 y 17:00');
+      SweetAlertService.error('La hora debe estar entre 08:00 y 17:00');
       return;
     }
+
+        this.eventos.push({
+      title: this.titulo,
+      start: fechaCompleta,
+      end: new Date(fechaCompleta.getTime() + 60 * 60 * 1000),
+      meta: {
+        description: this.descripcion,
+        clienteId: this.clienteSeleccionadoId!,
+        mascotaId: this.mascotaSeleccionadaId!,
+      },
+    });
 
     this.dialogRef.close({
-      titulo: this.titulo,
-      descripcion: this.descripcion,
-      fecha: fechaCompleta,
-      clienteId: this.clienteSeleccionadoId,
-      mascotaId: this.mascotaSeleccionadaId,
     });
   }
 

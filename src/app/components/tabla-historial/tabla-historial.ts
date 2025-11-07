@@ -10,7 +10,7 @@ interface EventoHistorial {
   cliente: string;
   mascota: string;
   tipo: string;
-  descripcion: string;
+  descripcion?: string;
 }
 
 @Component({
@@ -27,15 +27,15 @@ export class TablaHistorial {
   get eventosFiltrados(): EventoHistorial[] {
     return this.eventos
       .map((ev) => {
-        const clienteData = this.clientes.find((c) => c.id === ev.meta.clienteId);
-        const mascotaData = clienteData?.mascotas.find((m) => m.id === ev.meta.mascotaId);
+        const clienteData = this.clientes.find((c) => c.id === ev.meta?.clienteId);
+        const mascotaData = clienteData?.mascotas.find((m) => m.id === ev.meta?.mascotaId);
         return {
           fecha: ev.start.toLocaleDateString(),
           hora: ev.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           cliente: clienteData ? `${clienteData.nombres} ${clienteData.apellidos}` : 'Desconocido',
           mascota: mascotaData ? mascotaData.nombre : 'Desconocido',
           tipo: ev.title,
-          descripcion: ev.meta.description,
+          descripcion: ev.meta?.description,
         };
       })
       .filter((ev) => ev.cliente.toLowerCase().includes(this.filtroNombre.toLowerCase()));
